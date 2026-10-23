@@ -1,4 +1,4 @@
-package domain;
+package com.clinica.veterinaria.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
