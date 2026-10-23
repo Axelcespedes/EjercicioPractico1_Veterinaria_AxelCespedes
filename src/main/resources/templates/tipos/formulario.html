@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: estructura(~{::title}, ~{::main})}">
+<head>
+    <title>Tipo de Servicio | Clínica Veterinaria</title>
+</head>
+<body>
+<main class="container my-5">
+
+    <h2 class="h3 text-info mb-4"
+        th:text="${tipoServicio.idTipo == null} ? 'Nuevo tipo de servicio' : 'Editar tipo de servicio'">Formulario</h2>
+
+    <div class="tarjeta-clinica p-4">
+        <form th:action="@{/tipos/guardar}" th:object="${tipoServicio}" method="post">
+            <input type="hidden" th:field="*{idTipo}">
+
+            <div class="mb-3">
+                <label for="nombreTipo" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreTipo"
+                       th:field="*{nombreTipo}" maxlength="100" required>
+            </div>
+            <div class="mb-4">
+                <label for="detalleTipo" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="detalleTipo"
+                       th:field="*{detalleTipo}" maxlength="255">
+            </div>
+
+            <button type="submit" class="btn btn-acento">Guardar</button>
+            <a class="btn btn-outline-secondary" th:href="@{/tipos}">Cancelar</a>
+        </form>
+    </div>
+</main>
+</body>
+</html>

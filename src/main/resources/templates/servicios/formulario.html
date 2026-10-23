@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: estructura(~{::title}, ~{::main})}">
+<head>
+    <title>Servicio | Clínica Veterinaria</title>
+</head>
+<body>
+<main class="container my-5">
+
+    <h2 class="h3 text-info mb-4"
+        th:text="${servicio.idServicio == null} ? 'Nuevo servicio' : 'Editar servicio'">Formulario</h2>
+
+    <div class="tarjeta-clinica p-4">
+        <form th:action="@{/servicios/guardar}" th:object="${servicio}" method="post">
+            <input type="hidden" th:field="*{idServicio}">
+
+            <div class="mb-3">
+                <label for="nombreServicio" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombreServicio"
+                       th:field="*{nombreServicio}" maxlength="100" required>
+            </div>
+
+            <div class="row g-3 mb-3">
+                <div class="col-md-6">
+                    <label for="precioServicio" class="form-label">Precio</label>
+                    <input type="number" step="0.01" min="0" class="form-control"
+                           id="precioServicio" th:field="*{precioServicio}" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="duracionMinutos" class="form-label">Duración (minutos)</label>
+                    <input type="number" min="1" class="form-control"
+                           id="duracionMinutos" th:field="*{duracionMinutos}" required>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="tipoServicio" class="form-label">Tipo de servicio</label>
+                <select class="form-select" id="tipoServicio" th:field="*{tipoServicio.idTipo}" required>
+                    <option value="">Seleccione un tipo...</option>
+                    <option th:each="tipo : ${listaTipos}"
+                            th:value="${tipo.idTipo}"
+                            th:text="${tipo.nombreTipo}">Tipo</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-acento">Guardar</button>
+            <a class="btn btn-outline-secondary" th:href="@{/servicios}">Cancelar</a>
+        </form>
+    </div>
+</main>
+</body>
+</html>
