@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{base :: estructura(~{::title}, ~{::main})}">
+<head>
+    <title>Inicio | Clínica Veterinaria</title>
+</head>
+<body>
+<main class="container my-5">
+
+    <!-- Campaña destacada -->
+    <section class="banner-campana p-5 mb-5 shadow">
+        <span class="badge text-bg-light mb-3">Campaña del mes</span>
+        <h2 class="display-6 fw-bold">Jornada de Vacunación 💉</h2>
+        <p class="lead mb-3">
+            Durante todo el mes, vacuna antirrábica y polivalente con precio especial.
+            Protege a tu mascota y pregunta por nuestro combo de refuerzos.
+        </p>
+        <a class="btn btn-light btn-lg" th:href="@{/#consultas}">Quiero más información</a>
+    </section>
+
+    <!-- Información de la clínica -->
+    <section class="row g-4 mb-5">
+        <div class="col-md-4">
+            <div class="tarjeta-clinica p-4 h-100">
+                <h3 class="h5 text-info"><i class="bi bi-clock"></i> Horario</h3>
+                <p class="mb-1">Lunes a viernes: 8:00 a.m. - 6:00 p.m.</p>
+                <p class="mb-0">Sábados: 8:00 a.m. - 1:00 p.m.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="tarjeta-clinica p-4 h-100">
+                <h3 class="h5 text-info"><i class="bi bi-geo-alt"></i> Ubicación</h3>
+                <p class="mb-1">Avenida Central, San José, Costa Rica</p>
+                <p class="mb-0 texto-suave">Frente al parque, local #12</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="tarjeta-clinica p-4 h-100">
+                <h3 class="h5 text-info"><i class="bi bi-heart-pulse"></i> Especialidades</h3>
+                <ul class="mb-0 ps-3">
+                    <li>Medicina general</li>
+                    <li>Vacunación</li>
+                    <li>Estética y spa</li>
+                    <li>Cirugía programada</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Video con iframe -->
+    <section class="mb-5">
+        <h2 class="h4 text-info mb-3">Conoce cómo cuidamos a tu mascota</h2>
+        <div class="ratio ratio-16x9 tarjeta-clinica overflow-hidden">
+            <iframe src="https://www.youtube.com/embed/2tU5HY5uWnY"
+                    title="Cuidado de mascotas"
+                    allowfullscreen></iframe>
+        </div>
+    </section>
+
+    <!-- Formulario de consultas -->
+    <section id="consultas" class="tarjeta-clinica p-4 p-md-5">
+        <h2 class="h4 text-info mb-4">¿Tienes una consulta?</h2>
+        <form th:action="@{/consultas/enviar}" method="post">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <label for="nombreRemitente" class="form-label">Tu nombre</label>
+                    <input type="text" class="form-control" id="nombreRemitente"
+                           name="nombreRemitente" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="correoRemitente" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="correoRemitente"
+                           name="correoRemitente" required>
+                </div>
+                <div class="col-12">
+                    <label for="nombreMascota" class="form-label">Nombre de la mascota</label>
+                    <input type="text" class="form-control" id="nombreMascota"
+                           name="nombreMascota" required>
+                </div>
+                <div class="col-12">
+                    <label for="mensajeConsulta" class="form-label">Mensaje</label>
+                    <textarea class="form-control" id="mensajeConsulta"
+                              name="mensajeConsulta" rows="4" required></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-acento btn-lg">Enviar consulta</button>
+                </div>
+            </div>
+        </form>
+    </section>
+
+</main>
+</body>
+</html>
