@@ -6,6 +6,7 @@ import com.clinica.veterinaria.service.CitaService;
 import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.time.LocalDate;
 
 @Service
 public class CitaServiceImpl implements CitaService {
@@ -20,5 +21,11 @@ public class CitaServiceImpl implements CitaService {
     @Transactional(readOnly = true)
     public List<Cita> listarPorFecha() {
         return citaRepository.findAllByOrderByFechaCitaAsc();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Cita> consultaAmpliada(Integer idTipo, LocalDate desde, LocalDate hasta) {
+        return citaRepository.consultaAmpliada(idTipo, desde, hasta);
     }
 }
